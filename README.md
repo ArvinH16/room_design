@@ -17,20 +17,20 @@ An intelligent room design application that uses AI to analyze uploaded room pho
 - **Frontend**: Next.js 14, React 18, TypeScript, Tailwind CSS
 - **AI Integration**: 
   - Exa AI for intelligent product search
-  - Mock implementation for product placement (see note below)
+  - Google Nano Banana (Gemini 2.5 Flash) for AI-powered image editing
   - Computer vision concepts for room analysis
 - **Image Processing**: Canvas API, Sharp
 - **UI Components**: Lucide React icons
 
-### Important Note on Google Imagen API
+### Google Nano Banana (Gemini) Integration
 
-The Google Imagen API (including Imagen 4.0 / "Nano Banana") is designed for **generating new images from text prompts**, not for editing existing images or placing products into photos. This app uses a smart mock implementation that:
-- Analyzes your room photo
-- Finds real products using Exa AI
-- Places product overlays intelligently based on product type
-- Maintains your original room photo
+This app uses Google's Nano Banana (Gemini 2.5 Flash Image) for AI-powered image editing. Nano Banana can:
+- Take your existing room photo as input
+- Add products seamlessly using natural language prompts
+- Generate photorealistic results with proper lighting and perspective
+- Maintain the original room's style and aesthetic
 
-For details on implementing the actual Imagen API for image generation, see [IMAGEN_IMPLEMENTATION_GUIDE.md](IMAGEN_IMPLEMENTATION_GUIDE.md).
+Unlike the traditional Imagen API, Nano Banana supports image editing and modifications, making it perfect for our room design use case.
 
 ## Getting Started
 
@@ -40,7 +40,7 @@ For details on implementing the actual Imagen API for image generation, see [IMA
 - npm or yarn
 - API keys for:
   - Exa AI (for product search)
-  - Google AI (for image generation)
+  - Google AI (for Nano Banana image editing)
 
 ### Installation
 
@@ -84,7 +84,7 @@ npm run dev
 ## API Endpoints
 
 - `POST /api/search-products` - Search for products using Exa AI
-- `POST /api/generate-room` - Generate room with product placements (uses mock implementation)
+- `POST /api/generate-room` - Generate room with product placements using Nano Banana AI
 
 ## Project Structure
 
@@ -114,10 +114,11 @@ room_designer/
 3. Add it to your `.env.local` file
 
 ### Google AI Setup
-1. Enable the Generative AI API in Google Cloud Console
-2. Create an API key
-3. Add it to your `.env.local` file as `GOOGLE_AI_API_KEY`
-4. The request uses the `?key=` query parameter (no Authorization header)
+1. Visit [Google AI Studio](https://aistudio.google.com/) or [Google Cloud Console](https://console.cloud.google.com/)
+2. Enable the Generative Language API
+3. Create an API key
+4. Add it to your `.env.local` file as `GOOGLE_AI_API_KEY`
+5. The API supports the `gemini-2.5-flash-image-preview` model for image editing
 
 ## Development
 

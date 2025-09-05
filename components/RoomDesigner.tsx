@@ -56,7 +56,7 @@ export default function RoomDesigner({
       setProducts(searchResults)
       
       // Generate image with products
-      await generateImageWithProducts(searchResults)
+      await generateImageWithProducts(searchResults, analysis)
     } catch (error) {
       console.error('Product search failed:', error)
     } finally {
@@ -64,10 +64,14 @@ export default function RoomDesigner({
     }
   }
 
-  const generateImageWithProducts = async (productList: Product[]) => {
+  const generateImageWithProducts = async (productList: Product[], analysis?: RoomAnalysis) => {
     setIsGeneratingImage(true)
     try {
-      const result = await generateRoomWithProducts(imageUrl, productList, roomAnalysis!)
+      const analysisToUse = analysis || roomAnalysis
+      if (!analysisToUse) {
+        throw new Error('Room analysis is not available')
+      }
+      const result = await generateRoomWithProducts(imageUrl, productList, analysisToUse)
       setGeneratedImageUrl(result.imageUrl)
       setProductPlacements(result.placements)
     } catch (error) {
