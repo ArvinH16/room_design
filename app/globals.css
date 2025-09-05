@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+
+  * {
+    @apply border-gray-200;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .upload-area {
+    @apply border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer transition-colors hover:border-primary-500 hover:bg-primary-50;
+  }
+  
+  .product-overlay {
+    @apply absolute cursor-pointer transition-transform hover:scale-105;
+  }
+  
+  .product-tooltip {
+    @apply absolute z-10 bg-white rounded-lg shadow-lg p-3 border max-w-xs;
+  }
+}
